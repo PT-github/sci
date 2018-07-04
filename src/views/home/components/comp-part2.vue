@@ -5,42 +5,22 @@
                 <div class="left_layout">
                     <h1>编辑团队<span>每一位编辑都就职或毕业于下列顶尖研究院所和学府</span></h1>
                     <div class="scroll">
-                        <a class="pos prev"><img src="img/ico12.png" alt=""></a>
-                        <a class="pos next"><img src="img/ico13.png" alt=""></a>
-                        <div class="layout_move" style="position: relative; overflow: hidden; height: 298.281px;">
-                            <ul style="width: 1749px; position: absolute; left: 0px;">
-                                <li>
-                                    <img src="img/ico14.png" alt="">
-                                    <img src="img/ico15.png" alt="">
-                                    <img src="img/ico16.png" alt="">
-                                    <img src="img/ico17.png" alt="">
-                                    <img src="img/ico18.png" alt="">
-                                    <img src="img/ico19.png" alt="">
-                                    <img src="img/ico20.png" alt="">
-                                    <img src="img/ico21.png" alt="">
-                                </li>
-                                <li>
-                                    <img src="img/ico23.png" alt="">
-                                    <img src="img/ico24.png" alt="">
-                                    <img src="img/ico25.png" alt="">
-                                    <img src="img/ico27.png" alt="">
-                                    <img src="img/ico28.png" alt="">
-                                    <img src="img/ico29.png" alt="">
-                                    <img src="img/ico30.png" alt="">
-                                    <img src="img/ico31.png" alt="">
-                                </li>
-                                <li>
-                                    <img src="img/ico32.png" alt="">
-                                    <img src="img/ico33.png" alt="">
-                                    <img src="img/ico34.png" alt="">
-                                    <img src="img/ico35.png" alt="">
-                                    <img src="img/ico36.png" alt="">
-                                    <img src="img/ico37.png" alt="">
-                                    <img src="img/ico38.png" alt="">
-                                    <img src="img/ico39.png" alt="">
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="pos prev"><img src="/static/imgs/ico12.png" alt=""></a>
+                        <a class="pos next"><img src="/static/imgs/ico13.png" alt=""></a>
+                        <swiper :options="mySwiper" class='mainSwiper'>
+                            <swiper-slide v-for='(v, index) in 3' :key="'comp-part2_slider' + index">
+                                <div class="slide-content">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                    <img src="/static/imgs/ico14.png" alt="">
+                                </div>
+                            </swiper-slide>
+                        </swiper>
                     </div>
                     <p><a href="index.php?page=sci_editors">了解更多</a></p>
                 </div>
@@ -61,17 +41,69 @@
     </div>
 </template>
 <script>
+    import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
-        name: 'CompPart2'
+        name: 'CompPart2',
+        data() {
+            return {
+                mySwiper: {
+                    width: 583,
+                    height: 298,
+                    autoplay: true,
+                    navigation: {
+                        nextEl: '.next',
+                        prevEl: '.prev',
+                    },
+                    loop:true
+                }
+            }
+        },
+        components: {
+            swiper,
+            swiperSlide
+        }
     }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
+    .mainSwiper {
+        width: 583px;
+        height: 298px;
+        margin-left: 31px;
+        .slide-content {
+            img {
+                width: 120px;
+                height: 120px;
+                float: left;
+                margin-left: 4%;
+                margin-top: 5%;
+            }
+            img:nth-child(4n+1){margin-left:1%;}
+        }
+    }
     .team {
         height: 500px;
         background: url(/static/imgs/img3.jpg) center no-repeat;
         h1 {
             padding-top: 31px;
             text-align: center;
+        }
+        .scroll {
+            position: relative;
+            width: 645px;
+            margin-left: 36px;
+            height: 340px;
+            .pos {
+                position: absolute;
+                top: 48%;
+                cursor: pointer;
+                z-index: 1;
+            }
+            .next {
+                right: 0;
+            }
+            .prev {
+                left: 0;
+            }
         }
         .left_layout {
             height: 458px;
@@ -81,6 +113,25 @@
             border: 1px solid #c9c9c9;
             margin: 20px;
             position: relative;
+            p {
+                a {
+                    position: absolute;
+                    bottom: 5%;
+                    left: 45%;
+                    color: #666;
+                    font-weight: bold;
+                }
+            }
+            h1 {
+                padding-top: 31px;
+                text-align: center;
+                span {
+                    display: block;
+                    font-size: 16px;
+                    font-weight: normal;
+                    margin-top: 14px;
+                }
+            }
         }
         .right_layout {
             float: right;
